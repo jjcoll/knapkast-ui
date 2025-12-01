@@ -10,8 +10,6 @@
 
 <style>
   .main {
-    background-color: red;
-    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -252,8 +250,8 @@
     }
   }
 
-  #cabinet-generator-wrapper .result-modal {
-    display: none;
+  .result-modal {
+    display: none !important;
     position: fixed;
     top: 0;
     left: 0;
@@ -265,11 +263,11 @@
     justify-content: center;
   }
 
-  #cabinet-generator-wrapper .result-modal.show {
-    display: flex;
+  .result-modal.show {
+    display: flex !important;
   }
 
-  #cabinet-generator-wrapper .result-content {
+  .result-modal .result-content {
     background: white;
     padding: 40px;
     border-radius: 12px;
@@ -279,13 +277,13 @@
     position: relative;
   }
 
-  #cabinet-generator-wrapper .result-image {
+  .result-modal .result-image {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
   }
 
-  #cabinet-generator-wrapper .close-modal {
+  .result-modal .close-modal {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -300,7 +298,7 @@
     color: #6b7280;
   }
 
-  #cabinet-generator-wrapper .close-modal:hover {
+  .result-modal .close-modal:hover {
     background: #d1d5db;
   }
 
@@ -321,6 +319,149 @@
 
   #cabinet-generator-wrapper #fileInput {
     display: none;
+  }
+
+  /* Image Comparison Slider */
+  #cabinet-generator-wrapper .comparison-container {
+    display: none;
+    width: 100%;
+    max-width: 1400px;
+    margin: 40px auto 0;
+    padding: 40px;
+    background: white;
+  }
+
+  #cabinet-generator-wrapper .comparison-container.show {
+    display: block;
+  }
+
+  #cabinet-generator-wrapper .comparison-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 24px;
+    text-align: center;
+  }
+
+  #cabinet-generator-wrapper .image-comparison-slider {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #cabinet-generator-wrapper .comparison-image {
+    display: block;
+    width: 100%;
+    user-select: none;
+    pointer-events: none;
+  }
+
+  #cabinet-generator-wrapper .image-after {
+    display: block;
+  }
+
+  #cabinet-generator-wrapper .image-before {
+    position: absolute;
+    height: 100%;
+    width: 50%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 2;
+  }
+
+  #cabinet-generator-wrapper .slider-handle {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    z-index: 5;
+    top: 0;
+    left: 50%;
+    height: 100%;
+    width: 4px;
+    background: white;
+    cursor: ew-resize;
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+  }
+
+  #cabinet-generator-wrapper .slider-handle::after {
+    content: "⇄";
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    color: white;
+    position: absolute;
+    margin: 0 0 0 -22px;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #2563eb;
+    border: 3px solid white;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+
+  #cabinet-generator-wrapper .slider-handle.resize {
+    cursor: ew-resize;
+  }
+
+  #cabinet-generator-wrapper .comparison-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 16px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #cabinet-generator-wrapper .label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6b7280;
+    padding: 8px 16px;
+    background: #f3f4f6;
+    border-radius: 6px;
+  }
+
+  #cabinet-generator-wrapper .comparison-actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-top: 32px;
+  }
+
+  #cabinet-generator-wrapper .action-button {
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  #cabinet-generator-wrapper .download-button {
+    background: #2563eb;
+    color: white;
+  }
+
+  #cabinet-generator-wrapper .download-button:hover {
+    background: #1d4ed8;
+  }
+
+  #cabinet-generator-wrapper .reset-button {
+    background: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+  }
+
+  #cabinet-generator-wrapper .reset-button:hover {
+    background: #f0f7ff;
   }
 
   @media (max-width: 1024px) {
@@ -515,6 +656,34 @@
   </div>
 </div>
 
+<!-- Image Comparison Slider -->
+<div id="cabinet-generator-wrapper">
+  <div class="comparison-container" id="comparisonContainer">
+    <h2 class="comparison-title">Before & After Comparison</h2>
+    <div class="image-comparison-slider" id="imageComparisonSlider">
+      <div class="image-before" id="imageBefore">
+        <img class="comparison-image" id="beforeImage" alt="Original Image" />
+      </div>
+      <div class="image-after" id="imageAfter">
+        <img class="comparison-image" id="afterImage" alt="Generated Image" />
+      </div>
+      <div class="slider-handle" id="sliderHandle"></div>
+    </div>
+    <div class="comparison-labels">
+      <span class="label">Generated</span>
+      <span class="label">Original</span>
+    </div>
+    <div class="comparison-actions">
+      <button class="action-button download-button" id="downloadButton">
+        Download Result
+      </button>
+      <button class="action-button reset-button" id="resetButton">
+        Create Another
+      </button>
+    </div>
+  </div>
+</div>
+
 <!-- Result Modal -->
 <div class="result-modal" id="resultModal">
   <div class="result-content">
@@ -526,9 +695,9 @@
 <script>
   (function () {
     // API Configuration
-    // const API_BASE_URL = 'https://knapkast-express-api.vercel.app';
+    const API_BASE_URL = "https://knapkast-express-api.vercel.app";
 
-    const API_BASE_URL = "http://localhost:3000";
+    // const API_BASE_URL = "http://localhost:3000";
 
     // Form configuration with composite data structure
     const formConfig = {
@@ -914,6 +1083,117 @@
       modal.classList.add("show");
     }
 
+    // Show comparison slider
+    function showComparison(originalImageSrc, generatedImageUrl) {
+      const container = document.getElementById("comparisonContainer");
+      const beforeImage = document.getElementById("beforeImage");
+      const afterImage = document.getElementById("afterImage");
+
+      // Set the images - after (generated) is the full background, before (original) is the overlay
+      afterImage.src = generatedImageUrl;
+      beforeImage.src = originalImageSrc;
+
+      container.classList.add("show");
+
+      // Set the width of the before image to match the slider width after images load
+      afterImage.onload = function () {
+        const slider = document.getElementById("imageComparisonSlider");
+        const width = slider.offsetWidth;
+        beforeImage.style.width = width + "px";
+      };
+
+      // Scroll to comparison section
+      setTimeout(() => {
+        container.scrollIntoView({ behavior: "smooth", block: "start" });
+      }, 100);
+
+      // Store generated URL for download
+      container.dataset.generatedUrl = generatedImageUrl;
+    }
+
+    // Initialize comparison slider
+    function initComparisonSlider() {
+      const slider = document.getElementById("imageComparisonSlider");
+      const imageBefore = document.getElementById("imageBefore");
+      const beforeImage = document.getElementById("beforeImage");
+      const resizer = document.getElementById("sliderHandle");
+      let active = false;
+
+      // Adjust width of image on resize
+      window.addEventListener("resize", function () {
+        const width = slider.offsetWidth;
+        if (beforeImage.src) {
+          beforeImage.style.width = width + "px";
+        }
+      });
+
+      function slideIt(x) {
+        let transform = Math.max(0, Math.min(x, slider.offsetWidth));
+        imageBefore.style.width = transform + "px";
+        resizer.style.left = transform + "px";
+      }
+
+      function pauseEvent(e) {
+        if (e.stopPropagation) e.stopPropagation();
+        if (e.preventDefault) e.preventDefault();
+        e.cancelBubble = true;
+        e.returnValue = false;
+        return false;
+      }
+
+      // Mouse events
+      resizer.addEventListener("mousedown", function () {
+        active = true;
+        resizer.classList.add("resize");
+      });
+
+      document.body.addEventListener("mouseup", function () {
+        active = false;
+        resizer.classList.remove("resize");
+      });
+
+      document.body.addEventListener("mouseleave", function () {
+        active = false;
+        resizer.classList.remove("resize");
+      });
+
+      document.body.addEventListener("mousemove", function (e) {
+        if (!active) return;
+        let x = e.pageX;
+        x -= slider.getBoundingClientRect().left;
+        slideIt(x);
+        pauseEvent(e);
+      });
+
+      // Touch events
+      resizer.addEventListener("touchstart", function () {
+        active = true;
+        resizer.classList.add("resize");
+      });
+
+      document.body.addEventListener("touchend", function () {
+        active = false;
+        resizer.classList.remove("resize");
+      });
+
+      document.body.addEventListener("touchcancel", function () {
+        active = false;
+        resizer.classList.remove("resize");
+      });
+
+      document.body.addEventListener("touchmove", function (e) {
+        if (!active) return;
+        let x;
+        let i;
+        for (i = 0; i < e.changedTouches.length; i++) {
+          x = e.changedTouches[i].pageX;
+        }
+        x -= slider.getBoundingClientRect().left;
+        slideIt(x);
+        pauseEvent(e);
+      });
+    }
+
     // Close modal handler
     document.getElementById("closeModal").addEventListener("click", () => {
       const modal = document.getElementById("resultModal");
@@ -944,7 +1224,7 @@
         const payload = {
           prompt: prompt,
           aspectRatio: "auto", // Default aspect ratio
-          resolution: "2K", // Default resolution
+          resolution: "1K", // Default resolution
           outputFormat: "png", // Default output format
         };
 
@@ -1026,8 +1306,8 @@
           console.log(`[COMPLETE] Total time: ${totalTime}s`);
           console.log("========================================\n");
 
-          // Step 3: Show result
-          showResult(result.imageUrl);
+          // Step 3: Show comparison slider
+          showComparison(selections.imageBase64, result.imageUrl);
         } catch (error) {
           const errorTime = ((Date.now() - startTime) / 1000).toFixed(2);
           console.error("\n========================================");
@@ -1044,8 +1324,64 @@
         }
       });
 
+    // Download button handler
+    document.getElementById("downloadButton").addEventListener("click", () => {
+      const container = document.getElementById("comparisonContainer");
+      const imageUrl = container.dataset.generatedUrl;
+
+      if (imageUrl) {
+        const link = document.createElement("a");
+        link.href = imageUrl;
+        link.download = `cabinet-generated-${Date.now()}.png`;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      }
+    });
+
+    // Reset button handler
+    document.getElementById("resetButton").addEventListener("click", () => {
+      // Hide comparison container
+      const container = document.getElementById("comparisonContainer");
+      container.classList.remove("show");
+
+      // Reset form
+      Object.keys(selections).forEach((key) => {
+        selections[key] = null;
+      });
+
+      // Reset UI
+      document.querySelectorAll(".option-pill").forEach((pill) => {
+        pill.classList.remove("selected");
+      });
+
+      document.querySelectorAll(".color-option-wrapper").forEach((wrapper) => {
+        wrapper.classList.remove("selected");
+        const circle = wrapper.querySelector(".color-circle");
+        if (circle) circle.classList.remove("selected");
+      });
+
+      // Reset upload area
+      const uploadArea = document.getElementById("uploadArea");
+      const previewImage = document.getElementById("previewImage");
+      const fileInput = document.getElementById("fileInput");
+
+      uploadArea.classList.remove("has-image");
+      previewImage.src = "";
+      fileInput.value = "";
+
+      updateCreateButton();
+
+      // Scroll back to form
+      document.getElementById("cabinet-generator-wrapper").scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    });
+
     // Initialize
     renderForm();
     updateCreateButton();
+    initComparisonSlider();
   })();
 </script>
