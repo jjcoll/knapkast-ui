@@ -1,0 +1,1051 @@
+<!-- Webflow Custom Code Embed - Cabinet Generator Form -->
+<!-- Paste this entire code into Webflow's Embed element -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link
+  href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+  rel="stylesheet"
+/>
+
+<style>
+  .main {
+    background-color: red;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #cabinet-generator-wrapper * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border-radius: 24px;
+  }
+
+  #cabinet-generator-wrapper {
+    font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+      "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+      "Helvetica Neue", sans-serif;
+  }
+
+  #cabinet-generator-wrapper .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background: white;
+    overflow: hidden;
+  }
+
+  #cabinet-generator-wrapper .main-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  #cabinet-generator-wrapper .left-panel {
+    background: #f9fafb;
+    border-radius: 0;
+    padding: 40px;
+    border-right: 1px solid #e5e7eb;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+  }
+
+  #cabinet-generator-wrapper .upload-area {
+    width: 100%;
+    max-width: 500px;
+    height: 500px;
+    border: 2px dashed #d1d5db;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    background: white;
+    position: relative;
+    overflow: hidden;
+  }
+
+  #cabinet-generator-wrapper .upload-area:hover {
+    border-color: #2563eb;
+    background: #f9fafb;
+  }
+
+  #cabinet-generator-wrapper .upload-area.has-image {
+    border-style: solid;
+  }
+
+  #cabinet-generator-wrapper .upload-icon {
+    width: 64px;
+    height: 64px;
+    margin-bottom: 16px;
+  }
+
+  #cabinet-generator-wrapper .upload-text {
+    font-size: 16px;
+    color: #2563eb;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+
+  #cabinet-generator-wrapper .upload-subtext {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  #cabinet-generator-wrapper .preview-image {
+    display: none;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+  }
+
+  #cabinet-generator-wrapper .upload-area.has-image .preview-image {
+    display: block;
+  }
+
+  #cabinet-generator-wrapper .upload-area.has-image .upload-content {
+    display: none;
+  }
+
+  #cabinet-generator-wrapper .right-panel {
+    padding: 40px;
+  }
+
+  #cabinet-generator-wrapper .form-section {
+    margin-bottom: 32px;
+  }
+
+  #cabinet-generator-wrapper .form-section:last-child {
+    margin-bottom: 0;
+  }
+
+  #cabinet-generator-wrapper .section-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  #cabinet-generator-wrapper .options-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  #cabinet-generator-wrapper .option-pill {
+    padding: 10px 20px;
+    border: 1.5px solid #d1d5db;
+    border-radius: 24px;
+    background: white;
+    color: #6b7280;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  #cabinet-generator-wrapper .option-pill:hover {
+    border-color: #9ca3af;
+  }
+
+  #cabinet-generator-wrapper .option-pill.selected {
+    background: #2563eb;
+    border-color: #2563eb;
+    color: white;
+  }
+
+  #cabinet-generator-wrapper .color-options {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  #cabinet-generator-wrapper .color-option-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  #cabinet-generator-wrapper .color-circle {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #d1d5db;
+    transition: all 0.2s;
+    position: relative;
+  }
+
+  #cabinet-generator-wrapper .color-circle:hover {
+    transform: scale(1.1);
+  }
+
+  #cabinet-generator-wrapper .color-circle.selected {
+    border-color: #2563eb;
+    border-width: 3px;
+    box-shadow: 0 0 0 2px white, 0 0 0 4px #2563eb;
+  }
+
+  #cabinet-generator-wrapper .color-name {
+    font-size: 12px;
+    color: #6b7280;
+    font-weight: 500;
+    text-align: center;
+    max-width: 70px;
+  }
+
+  #cabinet-generator-wrapper .color-option-wrapper.selected .color-name {
+    color: #2563eb;
+    font-weight: 600;
+  }
+
+  #cabinet-generator-wrapper .create-button {
+    width: 100%;
+    padding: 16px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: all 0.2s;
+  }
+
+  #cabinet-generator-wrapper .create-button:hover:not(:disabled) {
+    background: #1d4ed8;
+  }
+
+  #cabinet-generator-wrapper .create-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  #cabinet-generator-wrapper .loading-spinner {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: white;
+    animation: spin 0.8s linear infinite;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  #cabinet-generator-wrapper .result-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #cabinet-generator-wrapper .result-modal.show {
+    display: flex;
+  }
+
+  #cabinet-generator-wrapper .result-content {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 90%;
+    max-height: 90%;
+    overflow: auto;
+    position: relative;
+  }
+
+  #cabinet-generator-wrapper .result-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+
+  #cabinet-generator-wrapper .close-modal {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e5e7eb;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 1;
+    color: #6b7280;
+  }
+
+  #cabinet-generator-wrapper .close-modal:hover {
+    background: #d1d5db;
+  }
+
+  #cabinet-generator-wrapper .error-message {
+    margin-top: 16px;
+    padding: 12px;
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    border-radius: 8px;
+    color: #dc2626;
+    font-size: 14px;
+    display: none;
+  }
+
+  #cabinet-generator-wrapper .error-message.show {
+    display: block;
+  }
+
+  #cabinet-generator-wrapper #fileInput {
+    display: none;
+  }
+
+  @media (max-width: 1024px) {
+    #cabinet-generator-wrapper .main-content {
+      grid-template-columns: 1fr;
+    }
+
+    #cabinet-generator-wrapper .left-panel {
+      border-right: none;
+      border-bottom: 1px solid #e5e7eb;
+      min-height: 400px;
+      padding: 30px 20px;
+    }
+
+    #cabinet-generator-wrapper .upload-area {
+      max-width: 400px;
+      height: 400px;
+    }
+
+    #cabinet-generator-wrapper .right-panel {
+      padding: 30px 20px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #cabinet-generator-wrapper .left-panel {
+      min-height: 350px;
+      padding: 20px;
+    }
+
+    #cabinet-generator-wrapper .upload-area {
+      max-width: 100%;
+      height: 350px;
+    }
+
+    #cabinet-generator-wrapper .upload-icon {
+      width: 48px;
+      height: 48px;
+    }
+
+    #cabinet-generator-wrapper .upload-text {
+      font-size: 14px;
+    }
+
+    #cabinet-generator-wrapper .upload-subtext {
+      font-size: 12px;
+    }
+
+    #cabinet-generator-wrapper .right-panel {
+      padding: 20px;
+    }
+
+    #cabinet-generator-wrapper .form-section {
+      margin-bottom: 24px;
+    }
+
+    #cabinet-generator-wrapper .section-label {
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    #cabinet-generator-wrapper .option-pill {
+      padding: 8px 16px;
+      font-size: 13px;
+    }
+
+    #cabinet-generator-wrapper .color-circle {
+      width: 40px;
+      height: 40px;
+    }
+
+    #cabinet-generator-wrapper .color-options {
+      gap: 10px;
+    }
+
+    #cabinet-generator-wrapper .create-button {
+      margin-top: 30px;
+      padding: 14px;
+      font-size: 15px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #cabinet-generator-wrapper .left-panel {
+      min-height: 300px;
+      padding: 16px;
+    }
+
+    #cabinet-generator-wrapper .upload-area {
+      height: 300px;
+    }
+
+    #cabinet-generator-wrapper .upload-icon {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 12px;
+    }
+
+    #cabinet-generator-wrapper .upload-text {
+      font-size: 13px;
+    }
+
+    #cabinet-generator-wrapper .upload-subtext {
+      font-size: 11px;
+    }
+
+    #cabinet-generator-wrapper .right-panel {
+      padding: 16px;
+    }
+
+    #cabinet-generator-wrapper .form-section {
+      margin-bottom: 20px;
+    }
+
+    #cabinet-generator-wrapper .section-label {
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+
+    #cabinet-generator-wrapper .options-grid {
+      gap: 6px;
+    }
+
+    #cabinet-generator-wrapper .option-pill {
+      padding: 7px 14px;
+      font-size: 12px;
+    }
+
+    #cabinet-generator-wrapper .color-circle {
+      width: 36px;
+      height: 36px;
+    }
+
+    #cabinet-generator-wrapper .color-circle[data-color="#FFFFFF"]::after {
+      font-size: 16px;
+    }
+
+    #cabinet-generator-wrapper .color-options {
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    #cabinet-generator-wrapper .create-button {
+      margin-top: 24px;
+      padding: 12px;
+      font-size: 14px;
+      border-radius: 6px;
+    }
+  }
+</style>
+
+<div class="main">
+  <div id="cabinet-generator-wrapper">
+    <div class="container">
+      <div class="main-content">
+        <div class="left-panel">
+          <div class="upload-area" id="uploadArea">
+            <div class="upload-content">
+              <svg
+                class="upload-icon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                style="color: #2563eb"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
+                ></path>
+              </svg>
+              <div class="upload-text">Browse</div>
+              <div class="upload-subtext">Support all image format</div>
+            </div>
+            <img class="preview-image" id="previewImage" alt="Preview" />
+          </div>
+          <input type="file" id="fileInput" accept="image/*" />
+        </div>
+
+        <div class="right-panel">
+          <form id="cabinetForm">
+            <div id="formSections"></div>
+            <button type="submit" class="create-button" id="createButton">
+              Create
+            </button>
+            <div class="error-message" id="errorMessage"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Result Modal -->
+<div class="result-modal" id="resultModal">
+  <div class="result-content">
+    <button class="close-modal" id="closeModal">&times;</button>
+    <img class="result-image" id="resultImage" alt="Generated Image" />
+  </div>
+</div>
+
+<script>
+  (function () {
+    // API Configuration
+    // const API_BASE_URL = 'https://knapkast-express-api.vercel.app';
+
+    const API_BASE_URL = "http://localhost:3000";
+
+    // Form configuration with composite data structure
+    const formConfig = {
+      sections: [
+        {
+          id: "kasttype",
+          label: "Kies een kasttype",
+          type: "pills",
+          options: [
+            { id: 0, name: "Boekkast", prompt: "a bookshelf cabinet" },
+            { id: 1, name: "Wandkast", prompt: "a wall cabinet" },
+            { id: 2, name: "Bijkeuken", prompt: "a utility room cabinet" },
+            { id: 3, name: "Kledingkast", prompt: "a wardrobe cabinet" },
+            { id: 4, name: "Bureaukast", prompt: "an office cabinet" },
+            { id: 5, name: "Gangkast", prompt: "a hallway cabinet" },
+          ],
+        },
+        {
+          id: "space",
+          label: "Space",
+          type: "pills",
+          options: [
+            { id: 0, name: "Whole wall", prompt: "covering the whole wall" },
+            { id: 1, name: "Loose", prompt: "as a standalone piece" },
+            { id: 2, name: "Handle Doors", prompt: "with handle doors" },
+            { id: 3, name: "No Doors", prompt: "without doors" },
+            { id: 4, name: "Sliding Doors", prompt: "with sliding doors" },
+          ],
+        },
+        {
+          id: "colors",
+          label: "Colors",
+          type: "color-circles",
+          options: [
+            {
+              id: 0,
+              name: "Wood",
+              color: "#D4A574",
+              prompt: "in natural wood color",
+            },
+            {
+              id: 1,
+              name: "Wood Stripes",
+              color: "#C19A6B",
+              prompt: "in striped wood finish",
+            },
+            { id: 2, name: "White", color: "#FFFFFF", prompt: "in white" },
+            { id: 3, name: "Beige", color: "#E8D5C4", prompt: "in beige" },
+            { id: 4, name: "Grey", color: "#9CA3AF", prompt: "in grey" },
+            {
+              id: 5,
+              name: "Dark Grey",
+              color: "#4B5563",
+              prompt: "in dark grey",
+            },
+            {
+              id: 6,
+              name: "Mahogany",
+              color: "#6B3410",
+              prompt: "in mahogany",
+            },
+          ],
+        },
+        {
+          id: "vibe",
+          label: "Vibe",
+          type: "pills",
+          options: [
+            { id: 0, name: "Modern", prompt: "with modern style" },
+            { id: 1, name: "Clean", prompt: "with clean minimalist style" },
+            { id: 2, name: "Farm", prompt: "with farmhouse style" },
+            { id: 3, name: "Openkast", prompt: "with open shelving style" },
+            { id: 4, name: "Bureaukast", prompt: "with office style" },
+            { id: 5, name: "Gangkast", prompt: "with hallway style" },
+          ],
+        },
+        {
+          id: "functionality",
+          label: "Functionality",
+          type: "pills",
+          options: [
+            {
+              id: 0,
+              name: "Row of open space",
+              prompt: "including a row of open space",
+            },
+            { id: 1, name: "Drawers", prompt: "including drawers" },
+            { id: 2, name: "Table", prompt: "including a built-in table" },
+            { id: 3, name: "Seats", prompt: "including built-in seating" },
+          ],
+        },
+      ],
+    };
+
+    // Selection state
+    const selections = {
+      kasttype: null,
+      space: null,
+      colors: null,
+      vibe: null,
+      functionality: null,
+      image: null,
+    };
+
+    // Generate form UI
+    function renderForm() {
+      const container = document.getElementById("formSections");
+      container.innerHTML = "";
+
+      formConfig.sections.forEach((section) => {
+        const sectionDiv = document.createElement("div");
+        sectionDiv.className = "form-section";
+
+        const label = document.createElement("label");
+        label.className = "section-label";
+        label.textContent = section.label;
+        sectionDiv.appendChild(label);
+
+        if (section.type === "pills") {
+          const optionsGrid = document.createElement("div");
+          optionsGrid.className = "options-grid";
+
+          section.options.forEach((option) => {
+            const pill = document.createElement("button");
+            pill.type = "button";
+            pill.className = "option-pill";
+            pill.textContent = option.name;
+            pill.dataset.sectionId = section.id;
+            pill.dataset.optionId = option.id;
+
+            pill.addEventListener("click", () =>
+              handlePillSelection(section.id, option.id)
+            );
+            optionsGrid.appendChild(pill);
+          });
+
+          sectionDiv.appendChild(optionsGrid);
+        } else if (section.type === "color-circles") {
+          const colorOptions = document.createElement("div");
+          colorOptions.className = "color-options";
+
+          section.options.forEach((option) => {
+            const wrapper = document.createElement("div");
+            wrapper.className = "color-option-wrapper";
+            wrapper.dataset.sectionId = section.id;
+            wrapper.dataset.optionId = option.id;
+
+            const circle = document.createElement("div");
+            circle.className = "color-circle";
+            circle.style.backgroundColor = option.color;
+            circle.dataset.color = option.color;
+            circle.dataset.sectionId = section.id;
+            circle.dataset.optionId = option.id;
+
+            const colorName = document.createElement("div");
+            colorName.className = "color-name";
+            colorName.textContent = option.name;
+
+            wrapper.addEventListener("click", () =>
+              handleColorSelection(section.id, option.id)
+            );
+
+            wrapper.appendChild(circle);
+            wrapper.appendChild(colorName);
+            colorOptions.appendChild(wrapper);
+          });
+
+          sectionDiv.appendChild(colorOptions);
+        }
+
+        container.appendChild(sectionDiv);
+      });
+    }
+
+    // Handle pill selection
+    function handlePillSelection(sectionId, optionId) {
+      selections[sectionId] = optionId;
+
+      // Update UI
+      document
+        .querySelectorAll(`[data-section-id="${sectionId}"].option-pill`)
+        .forEach((pill) => {
+          pill.classList.remove("selected");
+        });
+
+      const selectedPill = document.querySelector(
+        `[data-section-id="${sectionId}"][data-option-id="${optionId}"]`
+      );
+      if (selectedPill) {
+        selectedPill.classList.add("selected");
+      }
+
+      updateCreateButton();
+    }
+
+    // Handle color selection
+    function handleColorSelection(sectionId, optionId) {
+      selections[sectionId] = optionId;
+
+      // Update UI - remove selected from all wrappers and circles
+      document
+        .querySelectorAll(
+          `[data-section-id="${sectionId}"].color-option-wrapper`
+        )
+        .forEach((wrapper) => {
+          wrapper.classList.remove("selected");
+          const circle = wrapper.querySelector(".color-circle");
+          if (circle) circle.classList.remove("selected");
+        });
+
+      // Add selected to the chosen wrapper and circle
+      const selectedWrapper = document.querySelector(
+        `.color-option-wrapper[data-section-id="${sectionId}"][data-option-id="${optionId}"]`
+      );
+      if (selectedWrapper) {
+        selectedWrapper.classList.add("selected");
+        const circle = selectedWrapper.querySelector(".color-circle");
+        if (circle) circle.classList.add("selected");
+      }
+
+      updateCreateButton();
+    }
+
+    // Image upload handling
+    const uploadArea = document.getElementById("uploadArea");
+    const fileInput = document.getElementById("fileInput");
+    const previewImage = document.getElementById("previewImage");
+
+    uploadArea.addEventListener("click", () => {
+      fileInput.click();
+    });
+
+    fileInput.addEventListener("change", (e) => {
+      const file = e.target.files[0];
+      if (file && file.type.startsWith("image/")) {
+        handleImageUpload(file);
+      }
+    });
+
+    // Drag and drop
+    uploadArea.addEventListener("dragover", (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = "#2563EB";
+    });
+
+    uploadArea.addEventListener("dragleave", (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = "#d1d5db";
+    });
+
+    uploadArea.addEventListener("drop", (e) => {
+      e.preventDefault();
+      uploadArea.style.borderColor = "#d1d5db";
+
+      const file = e.dataTransfer.files[0];
+      if (file && file.type.startsWith("image/")) {
+        handleImageUpload(file);
+      }
+    });
+
+    function handleImageUpload(file) {
+      selections.image = file;
+
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        previewImage.src = e.target.result;
+        selections.imageBase64 = e.target.result; // Store base64 data
+        uploadArea.classList.add("has-image");
+        updateCreateButton();
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // Update create button state
+    function updateCreateButton() {
+      const button = document.getElementById("createButton");
+      const allSelected = Object.entries(selections).every(
+        ([key, value]) => value !== null
+      );
+      button.disabled = !allSelected;
+    }
+
+    // Build prompt from selections
+    function buildPrompt() {
+      const parts = formConfig.sections
+        .map((section) => {
+          const selectedOption = section.options.find(
+            (opt) => opt.id === selections[section.id]
+          );
+          return selectedOption?.prompt || "";
+        })
+        .filter(Boolean);
+
+      return `Generate ${parts.join(" ")}`;
+    }
+
+    // Show error message
+    function showError(message) {
+      const errorElement = document.getElementById("errorMessage");
+      errorElement.textContent = message;
+      errorElement.classList.add("show");
+      setTimeout(() => {
+        errorElement.classList.remove("show");
+      }, 5000);
+    }
+
+    // Update button state with loading
+    function setButtonLoading(isLoading) {
+      const button = document.getElementById("createButton");
+      if (isLoading) {
+        button.disabled = true;
+        button.innerHTML = '<span class="loading-spinner"></span>Generating...';
+      } else {
+        button.disabled = false;
+        button.innerHTML = "Create";
+        updateCreateButton(); // Revalidate button state
+      }
+    }
+
+    // Poll for task result
+    async function pollTaskResult(taskId, startTime) {
+      const maxAttempts = 60; // Poll for up to 5 minutes (60 * 5 seconds)
+      let attempts = 0;
+
+      console.log(`[POLLING] Starting to poll for task: ${taskId}`);
+
+      while (attempts < maxAttempts) {
+        try {
+          const pollStartTime = performance.now();
+          const response = await fetch(`${API_BASE_URL}/result/${taskId}`);
+          const data = await response.json();
+          const pollEndTime = performance.now();
+
+          attempts++;
+          const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+          console.log(
+            `[POLLING] Attempt ${attempts}/${maxAttempts} (${elapsedTime}s elapsed)`,
+            {
+              status: data.status,
+              responseTime: `${(pollEndTime - pollStartTime).toFixed(2)}ms`,
+              data: data,
+            }
+          );
+
+          if (data.status === "success") {
+            console.log(`[SUCCESS] Task completed in ${elapsedTime}s`, {
+              imageUrl: data.imageUrl,
+              allUrls: data.allUrls,
+            });
+            return data;
+          } else if (data.status === "failed") {
+            console.error(`[FAILED] Task failed after ${elapsedTime}s`, {
+              error: data.error,
+              errorCode: data.errorCode,
+            });
+            throw new Error(data.error || "Image generation failed");
+          }
+
+          // Wait 5 seconds before polling again
+          console.log(
+            `[POLLING] Status: ${data.status}, waiting 5s before next poll...`
+          );
+          await new Promise((resolve) => setTimeout(resolve, 5000));
+        } catch (error) {
+          console.error(`[ERROR] Polling error on attempt ${attempts}:`, error);
+          throw error;
+        }
+      }
+
+      const totalTime = ((Date.now() - startTime) / 1000).toFixed(2);
+      console.error(
+        `[TIMEOUT] Task timed out after ${totalTime}s (${maxAttempts} attempts)`
+      );
+      throw new Error("Image generation timed out");
+    }
+
+    // Show result modal
+    function showResult(imageUrl) {
+      const modal = document.getElementById("resultModal");
+      const resultImage = document.getElementById("resultImage");
+      resultImage.src = imageUrl;
+      modal.classList.add("show");
+    }
+
+    // Close modal handler
+    document.getElementById("closeModal").addEventListener("click", () => {
+      const modal = document.getElementById("resultModal");
+      modal.classList.remove("show");
+    });
+
+    // Close modal on background click
+    document.getElementById("resultModal").addEventListener("click", (e) => {
+      if (e.target.id === "resultModal") {
+        e.target.classList.remove("show");
+      }
+    });
+
+    // Form submission
+    document
+      .getElementById("cabinetForm")
+      .addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const startTime = Date.now();
+        console.log("\n========================================");
+        console.log("[START] Form submitted at:", new Date().toISOString());
+        console.log("========================================\n");
+
+        const prompt = buildPrompt();
+
+        // Prepare request payload
+        const payload = {
+          prompt: prompt,
+          aspectRatio: "auto", // Default aspect ratio
+          resolution: "2K", // Default resolution
+          outputFormat: "png", // Default output format
+        };
+
+        // Add image if available
+        if (selections.imageBase64) {
+          payload.imageBase64 = selections.imageBase64;
+          console.log(
+            `[REQUEST] Image included: ${selections.image.name} (${(
+              selections.imageBase64.length / 1024
+            ).toFixed(2)} KB)`
+          );
+        } else {
+          console.log("[REQUEST] No image included");
+        }
+
+        console.log("\n[REQUEST] Payload Details:");
+        console.log("├─ Prompt:", prompt);
+        console.log("├─ Aspect Ratio:", payload.aspectRatio);
+        console.log("├─ Resolution:", payload.resolution);
+        console.log("├─ Output Format:", payload.outputFormat);
+        console.log("└─ Has Image:", !!payload.imageBase64);
+
+        console.log("\n[REQUEST] Selected Options:");
+        Object.entries(selections).forEach(([key, value]) => {
+          if (key === "image" || key === "imageBase64") return;
+          const section = formConfig.sections.find((s) => s.id === key);
+          const option = section?.options.find((opt) => opt.id === value);
+          console.log(
+            `├─ ${section?.label}: ${option?.name} (${option?.prompt})`
+          );
+        });
+
+        try {
+          setButtonLoading(true);
+
+          // Step 1: Create task
+          console.log("\n[API] Creating task...");
+          const createStartTime = performance.now();
+
+          const createResponse = await fetch(`${API_BASE_URL}/task`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload),
+          });
+
+          const createEndTime = performance.now();
+          const createDuration = (createEndTime - createStartTime).toFixed(2);
+
+          console.log(
+            `[API] Task creation response received in ${createDuration}ms`
+          );
+          console.log(
+            `├─ Status: ${createResponse.status} ${createResponse.statusText}`
+          );
+          console.log(`└─ OK: ${createResponse.ok}`);
+
+          if (!createResponse.ok) {
+            const errorText = await createResponse.text();
+            console.error("[API] Error response:", errorText);
+            throw new Error(
+              `Failed to create task: ${createResponse.statusText}`
+            );
+          }
+
+          const createData = await createResponse.json();
+          const { taskId } = createData;
+
+          console.log(`[API] Task created successfully:`, createData);
+          console.log(`└─ Task ID: ${taskId}`);
+
+          // Step 2: Poll for result
+          console.log("\n[POLLING] Beginning polling phase...");
+          const result = await pollTaskResult(taskId, startTime);
+
+          // Calculate total time
+          const totalTime = ((Date.now() - startTime) / 1000).toFixed(2);
+
+          console.log("\n========================================");
+          console.log(`[COMPLETE] Total time: ${totalTime}s`);
+          console.log("========================================\n");
+
+          // Step 3: Show result
+          showResult(result.imageUrl);
+        } catch (error) {
+          const errorTime = ((Date.now() - startTime) / 1000).toFixed(2);
+          console.error("\n========================================");
+          console.error(`[ERROR] Failed after ${errorTime}s`);
+          console.error("Error details:", error);
+          console.error("Stack trace:", error.stack);
+          console.error("========================================\n");
+
+          showError(
+            error.message || "An error occurred while generating the image"
+          );
+        } finally {
+          setButtonLoading(false);
+        }
+      });
+
+    // Initialize
+    renderForm();
+    updateCreateButton();
+  })();
+</script>
