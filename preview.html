@@ -315,7 +315,7 @@
 
   /* Image Comparison Slider */
   #cabinet-generator-wrapper .comparison-container {
-    display: none;
+    display: block; /* Changed from none to block for preview */
     width: 100%;
     margin: 40px 0 0;
     padding: 40px;
@@ -654,10 +654,10 @@
     <h2 class="comparison-title">Before & After Comparison</h2>
     <div class="image-comparison-slider" id="imageComparisonSlider">
       <div class="image-before" id="imageBefore">
-        <img class="comparison-image" id="beforeImage" alt="Original Image" />
+        <img class="comparison-image" id="beforeImage" src="modified.png" alt="Original Image" />
       </div>
       <div class="image-after" id="imageAfter">
-        <img class="comparison-image" id="afterImage" alt="Generated Image" />
+        <img class="comparison-image" id="afterImage" src="original.png" alt="Generated Image" />
       </div>
       <div class="slider-handle" id="sliderHandle"></div>
     </div>
@@ -1385,5 +1385,20 @@
     renderForm();
     updateCreateButton();
     initComparisonSlider();
+
+    // For preview: Set up the slider images on load
+    window.addEventListener('load', function() {
+      const slider = document.getElementById("imageComparisonSlider");
+      const imageBefore = document.getElementById("imageBefore");
+      const beforeImage = document.getElementById("beforeImage");
+      const afterImage = document.getElementById("afterImage");
+      if (slider && beforeImage.src && afterImage.complete) {
+        const width = slider.offsetWidth;
+        const height = afterImage.offsetHeight;
+        beforeImage.style.width = width + "px";
+        beforeImage.style.height = height + "px";
+        imageBefore.style.height = height + "px";
+      }
+    });
   })();
 </script>
