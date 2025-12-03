@@ -9,22 +9,26 @@ This project provides an interactive form interface that allows users to upload 
 ## Key Features
 
 ### 🎨 Dynamic Form Generation
+
 - **JSON-driven configuration** - All form fields, options, and AI prompts defined in a single data structure
 - **Multiple input types** - Pills for text selections, color circles for color choices
 - **Real-time validation** - Submit button enables only when all fields are selected
 - **Responsive design** - Mobile-first layout that adapts from mobile to desktop
 
 ### 🖼️ Image Upload & Processing
+
 - **Drag-and-drop support** - Users can drag images onto the upload area
 - **Live preview** - Uploaded images display immediately in the form
 - **Base64 encoding** - Images converted to base64 for API transmission
 
 ### 🔄 AI Image Generation
+
 - **Asynchronous task processing** - Uses polling mechanism to handle long-running AI operations
 - **Real-time status updates** - Loading spinner and status messages during generation
 - **Error handling** - Comprehensive error messages for failed generations
 
 ### 📊 Before/After Comparison
+
 - **Interactive slider** - Users can drag to compare original vs generated images
 - **Smooth animations** - Polished transitions and hover effects
 - **Download functionality** - One-click download of generated results
@@ -57,14 +61,15 @@ const formConfig = {
       options: [
         { id: 0, name: "Boekkast", prompt: "a bookshelf cabinet" },
         // ... more options
-      ]
+      ],
     },
     // ... more sections
-  ]
-}
+  ],
+};
 ```
 
 **Benefits:**
+
 - Non-developers can update options and prompts
 - Easy to add new sections or modify existing ones
 - Prompt fragments automatically combine into coherent AI instructions
@@ -102,12 +107,14 @@ GET /result/:taskId
 **Decision**: Store all form configuration (UI + prompts) in a single JSON structure
 
 **Reasoning**:
+
 - **Client autonomy** - Non-technical users can update options/prompts
 - **Maintainability** - All related data in one place
 - **Scalability** - Adding new sections requires only JSON updates
 - **Prompt flexibility** - Easy to iterate on AI prompt phrasing
 
 **Trade-offs**:
+
 - No type safety (pure JavaScript)
 - Specialized UI behaviors require code changes
 - Higher initial development time
@@ -119,12 +126,14 @@ GET /result/:taskId
 **Decision**: Package entire application in one HTML file
 
 **Reasoning**:
+
 - **Webflow compatibility** - Easy to embed via custom code block
 - **No build process** - Direct copy-paste deployment
 - **Self-contained** - No external dependencies or file requests
 - **Portability** - Easy to share, preview, and version control
 
 **Trade-offs**:
+
 - Larger file size
 - No module system or code splitting
 - Limited code organization
@@ -132,16 +141,20 @@ GET /result/:taskId
 ## Form Sections
 
 1. **Kies een kasttype** (Cabinet Type)
+
    - Boekkast, Wandkast, Bijkeuken, Kledingkast, Bureaukast, Gangkast
 
 2. **Space** (Configuration)
+
    - Whole wall, Loose, Handle Doors, No Doors, Sliding Doors
 
 3. **Colors**
+
    - Wood, Wood Stripes, White, Beige, Grey, Dark Grey, Mahogany
    - Visual color circles for intuitive selection
 
 4. **Vibe** (Style)
+
    - Modern, Clean, Farm, Openkast, Bureaukast, Gangkast
 
 5. **Functionality** (Features)
@@ -152,6 +165,7 @@ GET /result/:taskId
 The before/after comparison slider is based on [this CodePen by pig3onkick3r](https://codepen.io/pig3onkick3r/pen/YzqqWKY).
 
 **Features:**
+
 - Drag handle to reveal before/after
 - Touch and mouse support
 - Responsive sizing
@@ -219,16 +233,6 @@ All styles are scoped to `#cabinet-generator-wrapper` to avoid conflicts with We
 - Modern browsers (Chrome, Firefox, Safari, Edge)
 - Touch devices (iOS, Android)
 - Responsive breakpoints: 1024px, 768px, 480px
-
-## Future Enhancements
-
-- [ ] Image compression before upload
-- [ ] Multiple image generation variants
-- [ ] Save favorite configurations
-- [ ] Social sharing of generated designs
-- [ ] Admin panel for config management
-- [ ] TypeScript for type safety
-- [ ] Progress percentage during generation
 
 ## Credits
 
