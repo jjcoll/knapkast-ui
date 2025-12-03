@@ -242,4 +242,4 @@ All styles are scoped to `#cabinet-generator-wrapper` to avoid conflicts with We
 
 ## License
 
-Proprietary - Knapkast Project
+Proprietary - knapkast.nl
