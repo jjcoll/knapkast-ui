@@ -789,7 +789,9 @@
 
       <div class="progress-section" id="progressSection">
         <h3 class="progress-title">Generating Your Cabinet</h3>
-        <p class="progress-message">Please wait while we create your custom design...</p>
+        <p class="progress-message">
+          Please wait while we create your custom design...
+        </p>
         <div class="progress-percentage" id="progressPercentage">0%</div>
         <div class="progress-bar-container">
           <div class="progress-bar-fill" id="progressBarFill"></div>
@@ -1014,8 +1016,7 @@
               id: 1,
               name: "Wood Stripes",
               color: "#C19A6B",
-              prompt:
-                "in vertical striped wood veneer with strong linear grain",
+              prompt: "light brown with natural lightly striped",
             },
             {
               id: 2,
@@ -1053,13 +1054,7 @@
               color: "#111827",
               prompt: "in deep matte black for a dramatic designer look",
             },
-            {
-              id: 8,
-              name: "Two-tone Wood + White",
-              color: "#E5D5C0",
-              prompt:
-                "with a two-tone design: light wood combined with matte white fronts",
-            },
+
             {
               id: 9,
               name: "Dark Walnut",
@@ -1485,7 +1480,7 @@
         })
         .filter(Boolean);
 
-      return `Generate ${parts.join(" ")}`;
+      return `Generate ${parts.join(" ")} without changing the layout of the room`;
     }
 
     // Show error message
