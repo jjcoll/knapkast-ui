@@ -40,11 +40,14 @@ This project provides an interactive form interface that allows users to upload 
 
 ```
 custom-form/
-├── webflow-embed.html    # Production-ready embed for Webflow
-├── preview.html          # Local development/preview version
-├── original.png          # Sample original image
-├── modified.png          # Sample generated image
-└── README.md            # This file
+├── webflow-embed.html       # Source version (readable, for editing)
+├── webflow-embed.min.html   # Minified version (for Webflow deployment)
+├── preview.html             # Local development/preview version
+├── minify-for-webflow.js    # Build script to minify CSS
+├── package.json             # Node.js dependencies
+├── original.png             # Sample original image
+├── modified.png             # Sample generated image
+└── README.md                # This file
 ```
 
 ### Configuration System
@@ -175,12 +178,46 @@ The before/after comparison slider is based on [this CodePen by pig3onkick3r](ht
 
 ## Usage
 
-### For Webflow
+### Building for Webflow
 
-1. Copy the contents of `webflow-embed.html`
-2. In Webflow, add an Embed element to your page
-3. Paste the code into the embed
-4. Publish your site
+**Webflow has a 50,000 character limit for embed code.** To meet this requirement, we minify the CSS while keeping the source readable.
+
+#### Initial Setup
+
+```bash
+# Install dependencies (one-time setup)
+npm install
+```
+
+#### Build Process
+
+```bash
+# Minify CSS for Webflow deployment
+npm run minify
+```
+
+This will:
+
+- Read `webflow-embed.html` (your readable source)
+- Extract and minify all CSS
+- Output `webflow-embed.min.html` (under 50k characters)
+- Display before/after file sizes
+
+**Workflow:**
+
+1. **Edit** `webflow-embed.html` - Make all your changes here
+2. **Build** Run `npm run minify` to create the minified version
+3. **Deploy** Copy contents of `webflow-embed.min.html` to Webflow
+
+**Important:** Always edit `webflow-embed.html`, never edit the `.min.html` file directly as it will be overwritten on the next build.
+
+### For Webflow Deployment
+
+1. Run `npm run minify` to generate the minified version
+2. Copy the contents of `webflow-embed.min.html`
+3. In Webflow, add an Embed element to your page
+4. Paste the code into the embed
+5. Publish your site
 
 ### For Local Preview
 

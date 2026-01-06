@@ -1,0 +1,21 @@
+{
+  "name": "custom-cabinet-generator",
+  "version": "1.0.0",
+  "description": "AI-powered custom cabinet visualization form for Webflow",
+  "scripts": {
+    "minify": "node minify-for-webflow.js",
+    "build": "node minify-for-webflow.js"
+  },
+  "keywords": [
+    "webflow",
+    "cabinet",
+    "ai",
+    "image-generation"
+  ],
+  "author": "knapkast.nl",
+  "license": "PROPRIETARY",
+  "dependencies": {
+    "clean-css": "^5.3.3",
+    "terser": "^5.36.0"
+  }
+}

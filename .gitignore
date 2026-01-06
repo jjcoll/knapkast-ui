@@ -1,0 +1,8 @@
+# Dependencies
+node_modules/
+
+# Build output
+webflow-embed.min.html
+
+# npm
+package-lock.json
